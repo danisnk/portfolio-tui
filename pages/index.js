@@ -1,118 +1,235 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Home() {
+  const [selectedSection, setSelectedSection] = useState('home');
+  const [selectedItemName, setSelectedItemName] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const sections = {
+    home: { 
+      title: 'About', 
+      overview: `I'm <span class="highlight-blue">Safan Danis NK</span>, a passionate security engineer from India.`,
+      description: `
+      I have extensive experience in <span class="highlight-yellow">web application security</span>, focusing on vulnerabilities such as 
+      <span class="highlight-green">SQL injection</span>, <span class="highlight-red">CSRF</span>, and <span class="highlight-blue">XSS</span>. My work involves 
+      performing vulnerability assessments, penetration testing, and developing tools to automate security processes. Additionally, I have a solid background 
+      in <span class="highlight-purple">cloud security</span>, with hands-on experience in <span class="highlight-orange">AWS</span> and implementing security 
+      best practices in cloud environments. I am also proficient in using tools like <span class="highlight-teal">Burp Suite</span> and Mobile Security Framework 
+      (MobSF) for both web and mobile app security testing. My projects include developing a CSRF PoC Generator and an AI-based learning app, demonstrating 
+      my ability to create innovative solutions for complex security challenges. I'm always eager to learn and stay updated with the latest security trends 
+      to better protect systems and applications from emerging threats.
+    `,
+    },
+    experience: {
+      title: 'Experience',
+      items: [
+        { name: 'Freelancer', company: '' },
+        // Add more experience items here
+      ]
+    },
+    projects: {
+      title: 'Projects',
+      totalCount: 4,
+      items: [
+        { name: 'CSRF PoC Generator', description: `[Built in <span class="highlight-blue">2023</span>] <br>
+          <span class="highlight-orange">Python</span> <span class="highlight-purple">CLI</span> <span class="highlight-green">GUI</span>
+
+          <div class="github-link-container">
+            <a href="https://github.com/danisnk/csrf-poc-gen" target="_blank" rel="noopener noreferrer" class="github-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+          <br>
+
+           This tool was made to automate the <span class="highlight-blue">CSRF PoC Generation</span> and it has both <span class="highlight-green">CLI</span> and <span class="highlight-orange">GUI</span> versions.<br> 
+           It takes <span class="highlight-teal">Burp Suite</span> requests as input and generates a <span class="highlight-red">CSRF PoC</span>.<br>
+           Built with python using <span class="highlight-green">Airium</span> library
+        `, },
+        { name: 'X-plainer app', description: 'An application that explains complex topics in simple terms.' },
+        { name: 'Event Management Website', description: 'A web platform for managing and organizing events.' },
+        { name: 'E-commerce Website', description: 'A fully functional online store with product management and checkout.' },
+      ]
+    },
+    skills: {
+      title: 'Skills - Tools',
+      totalCount: 10,
+      items: [
+        { name: 'Burpsuite', description: 'Proficient in using Burp Suite for web application security testing.' },
+        { name: 'OWASP TOP 10', description: 'Thorough understanding of the OWASP Top 10 web application security risks.' },
+        { name: 'Android Security', description: 'Experienced in identifying and mitigating security vulnerabilities in Android applications.' },
+        { name: 'Vulnerability Assessment', description: 'Skilled in conducting comprehensive vulnerability assessments on various systems and applications.' },
+        { name: 'AWS', description: 'Familiar with AWS services and security best practices for cloud environments.' },
+        { name: 'MobSF', description: 'Proficient in using Mobile Security Framework (MobSF) for mobile app security testing.' },
+        { name: 'Python', description: 'Strong programming skills in Python for security scripting and tool development.' },
+        { name: 'JS', description: 'Proficient in JavaScript for web application development and security testing.' },
+        { name: 'React', description: 'Experienced in building secure front-end applications using React.' },
+        { name: 'React Native', description: 'Skilled in developing secure mobile applications using React Native.' },
+      ]
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (selectedSection !== 'home' && sections[selectedSection].items) {
+        const items = sections[selectedSection].items;
+        if (event.key === 'ArrowDown') {
+          setSelectedIndex((selectedIndex + 1) % items.length);
+        } else if (event.key === 'ArrowUp') {
+          setSelectedIndex((selectedIndex - 1 + items.length) % items.length);
+        }
+      }
+      
+      switch(event.key) {
+        case '1':
+          setSelectedSection('home');
+          break;
+        case '2':
+          setSelectedSection('experience');
+          break;
+        case '3':
+          setSelectedSection('projects');
+          break;
+        case '4':
+          setSelectedSection('skills');
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedSection, selectedIndex]);
+
+  useEffect(() => {
+    if (sections[selectedSection].items) {
+      setSelectedItemName(sections[selectedSection].items[selectedIndex]?.name);
+    }
+  }, [selectedSection, selectedIndex]);
+
+  const handleItemClick = (sectionKey, item) => {
+    setSelectedSection(sectionKey);
+    setSelectedItemName(item.name);
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="bg-darkblue text-gray-300 font-mono min-h-screen flex">
+  <Head>
+    <title>Safan Danis NK - Security Engineer</title>
+    <meta name="description" content="Safan Danis NK's personal website" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </Head>
+
+  {/* Left Sidebar */}
+  <div className="w-1/4 border-r border-white p-4">
+    <div className="mb-4 relative">
+      <h2
+        className={`text-xl px-2 bg-darkblue absolute top-0 left-2 z-10 transform -translate-y-1/2 ${
+          selectedSection === 'home' ? 'text-blue-400' : 'text-gray-300'
+        }`}
+        onClick={() => { setSelectedSection('home'); setSelectedItemName(null); }}
+      >
+        About
+      </h2>
+      <div className="border border-white p-2 mt-3">
+        <p className="text-s px-2 pb-2 mt-2" dangerouslySetInnerHTML={{ __html: sections['home'].overview }} />
+      </div>
+    </div>
+
+    {Object.entries(sections).map(([key, section]) => (
+      <div key={key} className="mb-4 relative">
+        {key !== 'home' && (
+          <>
+            <h2
+              className={`text-xl px-2 bg-darkblue absolute left-2 z-10 transform -translate-y-1/2 ${
+                selectedSection === key ? 'text-blue-400' : 'text-gray-300'
+              }`}
+              onClick={() => { setSelectedSection(key); setSelectedItemName(null); }}
+            >
+              {section.title}
+            </h2>
+            <div className="border border-white p-2 mt-3">
+              {section.items && (
+                <div className="pb-2">
+                  {section.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`mt-2 ${
+                        selectedItemName === item.name ? 'bg-blue-500 text-gray-300' : 'text-gray-300'
+                      } cursor-pointer`}
+                      onClick={() => handleItemClick(key, item)}
+                    >
+                      {item.name} {item.company && `@ ${item.company}`}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            {(key === 'skills' || key === 'projects' || key === 'experience') && (
+              <div className="absolute bottom-0 right-4 transform translate-y-1/2 px-1 bg-darkblue text-xs text-gray-500">
+                {selectedItemName
+                  ? sections[key].items.findIndex(item => item.name === selectedItemName) + 1
+                  : 0} of {section.totalCount || section.items.length}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    ))}
+  </div>
+
+  {/* Main Content Area */}
+  <div className="w-3/4 p-2 border-l border-white">
+    <div className={`border border-white p-2 ${selectedSection === 'home' ? 'border-white' : 'border-white'}`}>
+      {selectedSection === 'home' ? (
+        <div>
+          <h2 className="text-2xl mb-2">{sections[selectedSection].title}</h2>
+          <div className="border-1 border-white p-2">
+            <p dangerouslySetInnerHTML={{ __html: sections[selectedSection].description }} />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <h2 className="text-2xl mb-2">{sections[selectedSection].title}</h2>
+          {sections[selectedSection].items && selectedItemName ? (
+            <div className="border-1 border-white p-2">
+              <p dangerouslySetInnerHTML={{ __html: sections[selectedSection].items.find(item => item.name === selectedItemName)?.description }} />
+            </div>
+          ) : (
+            <div className="border-1 border-white p-2">
+              {`Select an item from the ${sections[selectedSection].title} section to see details.`}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+  {/* Footer */}
+  <footer className="absolute bottom-0 w-full text-center p-4">
+    <p className="text-gray-400">Use arrow keys to navigate or just use the mouse</p>
+    <div className="mt-2">
+      <a 
+        href="/safan-danis-resume.pdf" 
+        className="text-blue-400 mr-4"
+        download="Safan-Danis-Resume.pdf"
+      >
+        <i className="fas fa-file-download"></i> Resume
+      </a>
+      <a 
+        href="https://github.com/danisnk" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="text-blue-400"
+      >
+        <i className="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </footer>
+</div>
   );
 }

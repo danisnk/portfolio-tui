@@ -31,3 +31,78 @@ body {
     text-wrap: balance;
   }
 }
+
+.highlight-yellow {
+  color: rgb(241, 241, 170);
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-green {
+  color: rgb(198, 245, 198);
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-red {
+  color: lightcoral;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-blue {
+  color: lightblue;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-purple {
+  color: lavender;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-orange {
+  color: rgb(255, 229, 180);
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-teal {
+  color: lightseagreen;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+/* Global or component-specific CSS */
+.github-link-container {
+  margin-top: 10px;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.github-link i {
+  margin-right: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.github-link:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
+
+
+
