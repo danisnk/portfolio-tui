@@ -12,14 +12,23 @@ export default function Home() {
       title: 'About', 
       overview: `I'm <span class="highlight-blue">Safan Danis NK</span>, a passionate security engineer from India.`,
       description: `
-      I have extensive experience in <span class="highlight-yellow">web application security</span>, focusing on vulnerabilities such as 
-      <span class="highlight-green">SQL injection</span>, <span class="highlight-red">CSRF</span>, and <span class="highlight-blue">XSS</span>. My work involves 
-      performing vulnerability assessments, penetration testing, and developing tools to automate security processes. Additionally, I have a solid background 
-      in <span class="highlight-purple">cloud security</span>, with hands-on experience in <span class="highlight-orange">AWS</span> and implementing security 
-      best practices in cloud environments. I am also proficient in using tools like <span class="highlight-teal">Burp Suite</span> and Mobile Security Framework 
-      (MobSF) for both web and mobile app security testing. My projects include developing a CSRF PoC Generator and an AI-based learning app, demonstrating 
-      my ability to create innovative solutions for complex security challenges. I'm always eager to learn and stay updated with the latest security trends 
-      to better protect systems and applications from emerging threats.
+      I'm <span class="highlight-blue">Safan Danis NK</span>.<br>
+      <br>
+      I'm a <span class="highlight-red">security engineer</span> focusing on <span class="highlight-green">Web application</span>, and <span class="highlight-green">android security</span> . 
+      <br>
+      <br>
+      My work involves performing <span class="highlight-red">vulnerability assessments, penetration testing</span>, and <span class="highlight-red">developing tools</span> to automate security processes. Additionally, I have a solid background 
+      in <span class="highlight-purple">cloud security</span>, with hands-on experience in <span class="highlight-green">AWS</span> and implementing security 
+      best practices in cloud environments. <br>
+      <br>
+      I am also proficient in using tools like <span class="highlight-teal">Burp Suite</span> and Mobile Security Framework 
+      (MobSF) for both web and mobile app security testing. 
+      <br>
+      <br>
+      You can find my resume here - <a class="highlight-blue" href="/safan-danis-resume.pdf" target="_blank">Resume</a><br>
+My LinkedIn - <a class="highlight-blue" href="https://linkedin.com/in/nksafan" target="_blank">LinkedIn</a><br>
+Github - <a class="highlight-blue" href="https://github.com/danisnk" target="_blank">Github</a><br>
+
     `,
     },
     experience: {
@@ -226,7 +235,15 @@ export default function Home() {
         rel="noopener noreferrer" 
         className="text-blue-400"
       >
-        <i className="fab fa-github"></i> GitHub
+        <i className="fab fa-github mr-4"></i>
+      </a>
+      <a 
+        href="https://linkedin.com/in/nksafan" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="text-blue-400"
+      >
+        <i className="fab fa-linkedin"></i>
       </a>
     </div>
   </footer>
