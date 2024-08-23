@@ -51,7 +51,7 @@ body {
 }
 
 .highlight-blue {
-  color: lightblue;
+  color: rgb(86, 151, 236);
   padding: 2px;
   border-radius: 3px;
 }
@@ -63,7 +63,7 @@ body {
 }
 
 .highlight-orange {
-  color: rgb(255, 229, 180);
+  color: rgb(229, 168, 55);
   padding: 2px;
   border-radius: 3px;
 }
@@ -83,10 +83,9 @@ body {
   display: inline-flex;
   align-items: center;
   padding: 5px 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  color: #333;
+  border: 1px solid white;
+  background-color: #0b0b1200;
+  color: rgb(224, 224, 224);
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
@@ -99,7 +98,7 @@ body {
 }
 
 .github-link:hover {
-  background-color: #ddd;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
   color: #000;
 }
 

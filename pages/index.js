@@ -10,19 +10,31 @@ export default function Home() {
   const sections = {
     home: { 
       title: 'About', 
-      overview: `I'm <span class="highlight-blue">Safan Danis NK</span>, a passionate security engineer from India.`,
+      overview: `I'm <span class="highlight-blue">Safan Danis NK</span>, a passionate <span class="highlight-blue">security engineer</span> from India.`,
       description: `
+      <br>
+      <br>
+      <br>
+      <pre style="font-size: 10px;">
+   _____       ____               ____              _         _   ____ __
+  / ___/____ _/ __/___ _____     / __ \\____ _____  (_)____   / | / / //_/
+  \\__ \\/ __ \`/ /_/ __ \`/ __ \\   / / / / __ \`/ __ \\/ / ___/  /  |/ / ,<   
+ ___/ / /_/ / __/ /_/ / / / /  / /_/ / /_/ / / / / (__  )  / /|  / /| |  
+/____/\\__,_/_/  \\__,_/_/ /_/  /_____/\\__,_/_/ /_/_/____/  /_/ |_/_/ |_|  
+      </pre>
+      <br>
+      <br>
       I'm <span class="highlight-blue">Safan Danis NK</span>.<br>
       <br>
-      I'm a <span class="highlight-red">security engineer</span> focusing on <span class="highlight-green">Web application</span>, and <span class="highlight-green">android security</span> . 
+      I'm a <span class="highlight-red">security engineer</span> focusing on <span class="highlight-orange">Web application</span>, and <span class="highlight-orange">android security</span> . 
       <br>
       <br>
       My work involves performing <span class="highlight-red">vulnerability assessments, penetration testing</span>, and <span class="highlight-red">developing tools</span> to automate security processes. Additionally, I have a solid background 
-      in <span class="highlight-purple">cloud security</span>, with hands-on experience in <span class="highlight-green">AWS</span> and implementing security 
+      in <span class="highlight-purple">cloud security</span>, with hands-on experience in <span class="highlight-red">AWS</span> and implementing security 
       best practices in cloud environments. <br>
       <br>
-      I am also proficient in using tools like <span class="highlight-teal">Burp Suite</span> and Mobile Security Framework 
-      (MobSF) for both web and mobile app security testing. 
+      I am also proficient in using tools like <span class="highlight-red">Burp Suite</span> and <span class="highlight-red">Mobile Security Framework 
+      (MobSF)</span> for both web and mobile app security testing. 
       <br>
       <br>
       You can find my resume here - <a class="highlight-blue" href="/safan-danis-resume.pdf" target="_blank">Resume</a><br>
@@ -47,7 +59,7 @@ Github - <a class="highlight-blue" href="https://github.com/danisnk" target="_bl
 
           <div class="github-link-container">
             <a href="https://github.com/danisnk/csrf-poc-gen" target="_blank" rel="noopener noreferrer" class="github-link">
-              <i class="fab fa-github"></i> GitHub
+              <i class="fa-brands fa-github" style="color: #ffffff;"></i> GitHub
             </a>
           </div>
           <br>
@@ -134,7 +146,7 @@ Github - <a class="highlight-blue" href="https://github.com/danisnk" target="_bl
   </Head>
 
   {/* Left Sidebar */}
-  <div className="w-1/4 border-r border-white p-4">
+  <div className="w-1/4 p-2">
     <div className="mb-4 relative">
       <h2
         className={`text-xl px-2 bg-darkblue absolute top-0 left-2 z-10 transform -translate-y-1/2 ${
@@ -192,18 +204,17 @@ Github - <a class="highlight-blue" href="https://github.com/danisnk" target="_bl
   </div>
 
   {/* Main Content Area */}
-  <div className="w-3/4 p-2 border-l border-white">
+  <div className="w-3/4 pt-5">
     <div className={`border border-white p-2 ${selectedSection === 'home' ? 'border-white' : 'border-white'}`}>
       {selectedSection === 'home' ? (
         <div>
-          <h2 className="text-2xl mb-2">{sections[selectedSection].title}</h2>
           <div className="border-1 border-white p-2">
             <p dangerouslySetInnerHTML={{ __html: sections[selectedSection].description }} />
           </div>
         </div>
       ) : (
         <div>
-          <h2 className="text-2xl mb-2">{sections[selectedSection].title}</h2>
+          <h2 className="text-2xl mb-2 ">{selectedItemName}</h2>
           {sections[selectedSection].items && selectedItemName ? (
             <div className="border-1 border-white p-2">
               <p dangerouslySetInnerHTML={{ __html: sections[selectedSection].items.find(item => item.name === selectedItemName)?.description }} />
