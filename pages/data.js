@@ -77,6 +77,9 @@ export const sections = {
         { name: 'X-plainer app', description: 'An application that explains complex topics in simple terms.' },
         { name: 'Event Management Website', description: 'A web platform for managing and organizing events.' },
         { name: 'E-commerce Website', description: 'A fully functional online store with product management and checkout.' },
+        { name: 'X-plainer app', description: 'An application that explains complex topics in simple terms.' },
+        { name: 'Buafpsuite', description: 'Proficient in using Burp Suite for web application security testing.' },
+        { name: 'OWAfdSP TOP 10', description: 'Thorough understanding of the OWASP Top 10 web application security risks.' },
       ]
     },
     skills: {
