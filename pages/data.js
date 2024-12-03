@@ -1,3 +1,5 @@
+import React from "react";
+
 export const sections = {
     home: {
       title: 'About',
@@ -99,3 +101,16 @@ export const sections = {
       ]
     }
   };
+
+
+  const DataPage = () => {
+    return (
+      <div>
+        <h1>{sections.home.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: sections.home.description }} />
+        {/* Render more sections (experience, projects, skills) here */}
+      </div>
+    );
+  };
+  
+  export default DataPage;
